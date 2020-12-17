@@ -5,11 +5,11 @@ import Routes from "./routes";
 
 
 function App(props) {
-  const {history, store} = props;
+  const {store} = props;
   
   return (
     <Provider store = {store}>
-      <Routes store = {store} history ={history} />
+      <Routes store = {store} />
     </Provider>
     
   );

@@ -1,103 +1,126 @@
-import {React, useEffect} from 'react';
-import axios from 'axios';
+import {React} from 'react';
 import './iStyles/iStyles.css';
-import { useSelector, useDispatch, connect } from "react-redux";
+import { Heart, HeartFill } from 'react-bootstrap-icons';
+import { useSelector, useDispatch } from "react-redux";
 import { getAllProducts, setFavProducts, deleteFavProducts,
         selectAllProducts, selectFavProducts} from "../reducers/itemSlice";
 
 function IndexHome(props) {
 
-    const dispatch    = useDispatch();
-    const allProducts = useSelector(selectAllProducts);
-    console.log(allProducts);
+    const dispatch          = useDispatch();
+    const allProducts       = useSelector(selectAllProducts);
+    const favoriteProducts  = useSelector(selectFavProducts);
+    let  color = 'ibtn-dark';
+
     
-
-    useEffect( ()=>{
-        function SearchProducts(){
-       axios.get('https://pz8cvzu4sl.execute-api.us-east-1.amazonaws.com/dev/product-ms/product/getProductByIdCompany?id=5e8d08fafd3f3d2eb89c5063#')
-            .then(res => { dispatch(getAllProducts(res.data));
-                    })
-            .catch(err => console.log(err)); 
-                    }
-       SearchProducts();
-   },[dispatch]);
-
-   const btnAgg = () =>{
-    dispatch(setFavProducts(allProducts[0]));
+    const FavBtn = (AggProduct) => (e) => {
+    
+    
+      let indexF = undefined;
+      favoriteProducts.every((product, index) => {
+          if (product._id === AggProduct._id) {
+              indexF = index
+              return false;
+          }
+          return true;
+      });
+      if (indexF !== undefined){
+          dispatch(deleteFavProducts(indexF));
+          e.target.classList.remove('HeartFill');
+          e.target.classList.add('ibtn-dark');
+        }
+    else {
+        dispatch(setFavProducts(AggProduct));
+          e.target.classList.remove('ibtn-dark');
+          e.target.classList.add('HeartFill');
+    }
 }
-    return (
-        <div className="row">
-        <h1> HOME PAGE</h1>
-            <button onClick={() => btnAgg()}>agg primera product</button>
-            <h1> </h1>
-            <h1> </h1>
-            
-            <h1> </h1>
-            <h1> </h1>
-            <h1> </h1>
-            <h1> </h1>
-            <h1> </h1>
-            <h1> </h1>
-            <h1> </h1>
-            <h1> </h1>
-            <h1> </h1>
-            <h1> </h1>
-            <h1> </h1>
-            <h1> </h1>
-            <h1> </h1>
-            <h1> </h1>
-            <h1> </h1>
-            <h1> </h1>
-            <h1> </h1>
-            <h1> </h1>
-            <h1> </h1>
-            <h1> </h1>
-            <h1> </h1>
-            <h1> </h1>
-            <h1> </h1>
-            <h1> </h1>
-            <h1> </h1>
-            <h1> </h1>
-            <h1> </h1>
-            <h1> </h1>
-            <h1> </h1>
-            <h1> </h1>
-            <h1> </h1>
-            <h1> </h1>
-            <h1> </h1>
-            <h1> </h1>
-            <h1> </h1>
-            <h1> </h1>
-            <h1> </h1>
-            <h1> </h1>
-            <h1> </h1>
-            <h1> </h1>
-            <h1> </h1>
-            <h1> </h1>
-            <h1> </h1>
-            <h1> </h1>
-            <h1> </h1>
-            <h1> </h1>
-            <h1> </h1>
-            <h1> </h1>
-            <h1> </h1>
-            <h1> </h1>
-            <h1> </h1>
-            <h1> </h1>
-            <h1> </h1>
-            <h1> </h1>
-            <h1> </h1>
-            <h1> </h1>
-            <h1> </h1>
-            <h1> </h1>
-            <h1> </h1>
-       
-            
-            
 
+const deleteFavorite = (id) =>{
+    let indexF = undefined;
+    favoriteProducts.every((product,index)=> {
+       if ( product._id === id) { 
+           indexF = index 
+           return false;}
+        return true;
+    });
+     indexF !== undefined ? dispatch(deleteFavProducts(indexF)):console.log(indexF)
+} 
+const changeColor = (id) => {
+ color = "ibtn-dark"; 
+favoriteProducts.every((product, index) => {
+  if (product._id === id) {
+         color = "HeartFill";
+             return false;
+        }
+         return true;
+   });
+    
+}
+    
+return (
+<div className="container" id="main"> 
        
- </div>
+
+        
+{allProducts !== undefined? allProducts.map((product,index)=> {
+    return (
+
+        <div className="row" key={product._id}>
+        <div id="left">
+        <div className="col-8 mb-2">
+                    <div className="row m-0 p-0 d-flex justify-content-center " >
+              
+
+                    <div className="card promoting-card mlCard">
+
+
+                        <div className="card-body d-flex flex-row mt-Card1" type="button" 
+                            onClick={() => props.history.push("/userpage")}>
+                                <img src='https://i.ibb.co/cCfsdbD/descarga.jpg'
+                                alt= "user" 
+                                className="rounded-circle mr-3 avatarHome Rcircle"/>
+                                <div>                  
+                                 <h6 className="card-title titleCard">{product.Name}</h6> 
+                                 <p className="brandT"> {product.Brand}</p> 
+                                </div>
+                        </div>
+                    <hr className="hrStyle"/>
+
+      
+                <div className="view overlay">
+                     <img className="card-img-top" 
+                     src={product.Children[0].Imgs[0].Path} 
+                     alt={product.Children[0].Imgs[0].Alt} />
+                     <a href="#!">
+                         <div className="mask rgba-white-slight"></div>
+                     </a>
+                </div>
+                <hr className="hrStyle1"/>
+                 {changeColor(product._id)} 
+                <Heart className= { " iconClass " + color} type="button" onClick={FavBtn(product)} />
+                
+                <div className="card-body">
+                    <div className="collapse-content">
+                        <p className="card-text"> {product.Description}, this product has been imported from an API products, as proof of this instagram module.</p>          
+                          
+                    </div>
+                </div>
+
+
+            </div>
+            
+        </div>
+        </div>
+        </div>
+    </div>
+  
     )
+}) :<div></div>
+}
+</div>
+    
+)
 }
 
 
