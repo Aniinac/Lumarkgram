@@ -5,7 +5,7 @@ import './mStyles/nStyles.css'
 export default function Footbar() {
     return (
       
-<footer className="page-footer font-small unique-color-dark pt-4">
+        <footer className="page-footer font-small unique-color-dark pt-4">
                 <div className="container">
                      <ul className="list-unstyled list-inline text-center py-2">
                         <li className="list-inline-item">
@@ -18,14 +18,8 @@ export default function Footbar() {
                 </div>
 
              <div className="footer-copyright text-center py-3">© 2020 Copyright:
-                <a href="https://lumarketo.com/"> Lumarketo SPA</a>
-                
+                <a href="https://lumarketo.com/"> Lumarketo SPA</a> 
             </div>
-
-</footer>
-
-
-
-
+        </footer>
     );
 }

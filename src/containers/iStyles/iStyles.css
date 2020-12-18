@@ -6,7 +6,7 @@ width: 50px;
 height: 170px;
 width: 170px;
 margin-top: 34px;
-margin-left: 165px;
+margin-left: 0px;
 }
 .col-lg-6 {
     flex: 0 0 50%;
@@ -66,17 +66,13 @@ margin-left: 100px;
 .iconClass 
 {
     font-size: 27px!important;
-    color: black;
-    margin-left: 20px;
-  
-    
+    color: black; 
 }
+
 .iconClass1{
     font-size: 27px!important;
     color: red;
-    margin-left: 20px;
-  
-    
+
 }
 .iconClass2 {
     font-size: 24px!important;
@@ -88,9 +84,18 @@ margin-left: 100px;
     color: #121111;
     margin-left: 15px;
     margin-bottom: 2px;
+    margin-top: 10px;
 }
+.iconClass4 {
+    font-size: 24px!important;
+    color: #121111;
+    margin-bottom: 2px;
+    margin-top: 10px;
+}
+
 #left { float:left }
 #right { float:right }
+
 .bgCFP{
     padding: .75rem 1.25rem;
     margin-bottom: 0;
@@ -136,17 +141,16 @@ margin-left: 100px;
 .uName{
   font-size: 23px;
     font-weight: 300;
-    margin-right: 12px;
+    margin-top: 11px;
 }
-
 .bMessageU1{
     border: 1px;
     background: border-box;
     border-style: solid;
     border-color: #d1c3c396;
-    padding: 13px;
-    padding-top: 3px;
-    padding-bottom: 3px;
+   padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 7px;
     border-radius: 6px;
 }
 .bMTU1{
@@ -168,4 +172,23 @@ font-size: 17px;
 .imgP{
     max-height: 330px;
 
+}
+.imgP2{
+    max-height: 450px;
+    max-width: 450px;
+
+}
+.pComment{
+    margin-top: -12px;
+    color: gray;
+}
+.pDateiH{
+    font-size: 12px;
+    color: gray;
+}
+.maskL{
+        margin-bottom: 7px;
+}
+.ml-6{
+    margin-left: 5rem!important;
 }
